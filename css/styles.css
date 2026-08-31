@@ -86,20 +86,46 @@ h1,h2,h3{ margin:0; font-weight:400; }
   transition:background .45s var(--ease), padding .45s var(--ease), border-color .45s var(--ease);
   border-bottom:1px solid transparent;
 }
-.nav.stuck{
+.nav.stuck,.nav.menu-open{
   background:rgba(223,203,184,.88);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
   border-bottom-color:var(--line-soft);
   padding-top:.8rem; padding-bottom:.8rem;
 }
+/* an open menu needs an opaque bar — the panel below it is solid */
+.nav.menu-open{ background:rgba(223,203,184,.98) }
+
 .nav__brand{
   display:flex; align-items:center; gap:.6rem;
   font-family:'Cormorant Garamond',serif; font-size:1.5rem; letter-spacing:.01em;
   margin-right:auto;
 }
-.nav__mark{ width:18px; height:18px; color:var(--gold-true); }
-.nav__links{ display:flex; gap:2rem; }
+.nav__mark{ width:18px; height:18px; color:var(--gold-true); flex:none }
+.nav__links{ display:flex; align-items:center; gap:2rem; }
+
+/* ── hamburger ─────────────────────────────────────
+   Hidden above the mobile breakpoint; the bars morph into a cross. */
+.nav__toggle{
+  display:none; order:3; width:44px; height:44px; padding:0;
+  align-items:center; justify-content:center;
+  background:none; border:0; cursor:pointer; color:#12211A;
+}
+.nav__burger{ position:relative; display:block; width:22px; height:1.5px; background:currentColor }
+.nav__burger::before,.nav__burger::after{
+  content:''; position:absolute; left:0; height:1.5px; background:currentColor;
+}
+.nav__burger,
+.nav__burger::before,
+.nav__burger::after{
+  border-radius:2px;
+  transition:transform .35s var(--ease), width .35s var(--ease), background-color .2s linear;
+}
+.nav__burger::before{ top:-7px; width:22px }
+.nav__burger::after{ top:7px; width:14px }
+.nav__toggle[aria-expanded="true"] .nav__burger{ background:transparent }
+.nav__toggle[aria-expanded="true"] .nav__burger::before{ transform:translateY(7px) rotate(45deg) }
+.nav__toggle[aria-expanded="true"] .nav__burger::after{ transform:translateY(-7px) rotate(-45deg); width:22px }
 .nav__links a{
   font-size:.74rem; letter-spacing:.16em; text-transform:uppercase;
   color:var(--cream-dim); position:relative; padding-block:.25rem;
@@ -129,21 +155,58 @@ h1,h2,h3{ margin:0; font-weight:400; }
 .ico{ width:15px; height:15px; flex:none }
 
 .nav__cta{ padding:.62rem 1.1rem }
-@media (max-width:900px){ .nav__cta{ display:none } }
-@media (max-width:640px){ .nav__links{ gap:1.1rem } .nav__links a{ font-size:.66rem } }
-@media (max-width:600px){
-  /* mark only — the hero already carries the wordmark on small screens */
-  .nav__brand span{ display:none }
-  .nav{ gap:1rem }
-  .nav__links{ gap:1.15rem }
-  .nav__links a{ font-size:.63rem; letter-spacing:.12em }
+/* between the mobile menu and full width there is no room for the CTA */
+@media (max-width:900px) and (min-width:769px){ .nav__cta{ display:none } }
+@media (max-width:860px) and (min-width:769px){
+  .nav__links{ gap:1.3rem }
+  .nav__links a{ font-size:.68rem }
 }
-/* the smallest phones still in use (320px) need the last squeeze, or the
-   three links run past the right edge once the brand claims its 44px */
-@media (max-width:400px){
-  .nav{ gap:.6rem; padding-left:.75rem; padding-right:.75rem }
-  .nav__links{ gap:.8rem }
-  .nav__links a{ font-size:.58rem; letter-spacing:.08em }
+
+/* ═══ MOBILE NAV — dropdown ════════════════════════
+   Below 768px the links collapse behind the hamburger, which frees the
+   whole left side for a properly sized logo. */
+@media (max-width:768px){
+  .nav__toggle{ display:inline-flex }
+
+  .nav__brand{ font-size:1.8rem; gap:.55rem }
+  .nav__mark{ width:30px; height:30px }
+
+  .nav__links{
+    position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:stretch; gap:0;
+    padding:.2rem clamp(1.1rem,4vw,3rem) 1.2rem;
+    background:var(--sand);
+    border-bottom:1px solid rgba(18,33,26,.16);
+    box-shadow:0 26px 44px -28px rgba(18,33,26,.55);
+
+    visibility:hidden; opacity:0; transform:translateY(-10px);
+    pointer-events:none;   /* nothing tappable while it fades out */
+    transition:opacity .32s var(--ease), transform .32s var(--ease),
+               visibility 0s linear .32s;
+  }
+  .nav__links.open{
+    visibility:visible; opacity:1; transform:none;
+    pointer-events:auto;
+    transition-delay:0s, 0s, 0s;
+  }
+
+  .nav__links a{
+    font-size:.8rem; letter-spacing:.16em; padding:1.15rem 0;
+    border-bottom:1px solid rgba(18,33,26,.12);
+  }
+  .nav__links a::after{ display:none }
+  .nav__links a::before{ left:0; right:0 }
+
+  .nav__cta{
+    display:flex; margin-top:1.15rem; width:100%;
+    padding:.95rem 1.1rem; border-bottom:0;
+  }
+}
+
+@media (max-width:380px){
+  .nav{ padding-left:.9rem; padding-right:.9rem }
+  .nav__brand{ font-size:1.6rem }
+  .nav__mark{ width:26px; height:26px }
 }
 
 /* ═══ THE CREAM GROUND ═════════════════════════════

@@ -61,12 +61,17 @@
     <svg class="nav__mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#ms-cross"></use></svg>
     <span>medismith</span>
   </a>
-  <nav class="nav__links" aria-label="Primary">
+  <button class="nav__toggle" id="navToggle" type="button"
+          aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+    <span class="nav__burger" aria-hidden="true"></span>
+  </button>
+
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
     <a href="#team">Practitioners</a>
     <a href="#disciplines">Disciplines</a>
     <a href="#visit">Visit</a>
+    <a class="btn btn--ghost nav__cta" href="#team">Book a practitioner</a>
   </nav>
-  <a class="btn btn--ghost nav__cta" href="#team">Book a practitioner</a>
 </header>
 
 <!-- ───────────────────────── HERO ───────────────────────── -->

@@ -16,6 +16,43 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ── mobile menu ───────────────────────────────── */
+  var toggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  var mobileNav = window.matchMedia('(max-width: 768px)');
+
+  function setMenu(open) {
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    navLinks.classList.toggle('open', open);
+    nav.classList.toggle('menu-open', open);
+  }
+  function menuOpen() { return toggle.getAttribute('aria-expanded') === 'true'; }
+
+  toggle.addEventListener('click', function () { setMenu(!menuOpen()); });
+
+  // a tap on any menu item closes the panel behind it
+  navLinks.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setMenu(false);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (menuOpen() && !nav.contains(e.target)) setMenu(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menuOpen()) { setMenu(false); toggle.focus(); }
+  });
+
+  // Leaving mobile width with the panel open would strand it as a floating
+  // box. matchMedia is the cheap signal, but it does not fire everywhere, so
+  // a plain resize check backs it up.
+  function closeIfDesktop() { if (!mobileNav.matches && menuOpen()) setMenu(false); }
+  if (mobileNav.addEventListener) mobileNav.addEventListener('change', closeIfDesktop);
+  else if (mobileNav.addListener) mobileNav.addListener(closeIfDesktop);
+  window.addEventListener('resize', closeIfDesktop, { passive: true });
+  window.addEventListener('orientationchange', closeIfDesktop);
+
   /* ── scroll reveal ─────────────────────────────── */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {

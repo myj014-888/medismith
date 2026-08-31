@@ -120,10 +120,15 @@ viewport, and every interactive target at least 44x44 at all of them.
 | 1000-1600px | 3-4 columns |
 | >= 1700px | 5 columns — ten cards fall as two even rows |
 
-Two cases get their own treatment: below 400px the nav tightens so three
-links plus the 44px brand still fit, and a landscape phone (max-height 540px)
-gets a compressed hero and a shorter modal, since at full size the hero ran to
-twice the viewport height.
+Below 768px the nav links collapse into a dropdown behind a hamburger, which
+frees the bar for a larger logo — a 30px mark with the wordmark alongside,
+instead of the 18px mark on its own. The "Book a practitioner" button, hidden
+between 769 and 900px for want of room, reappears at the foot of the panel.
+The panel closes on link tap, outside click, Escape (returning focus to the
+toggle) and on resize past the breakpoint.
+
+A landscape phone (max-height 540px) gets a compressed hero and a shorter
+modal, since at full size the hero ran to twice the viewport height.
 
 Inline links widen their tap area with an invisible `::before` rather than real
 padding, so hit targets meet WCAG 2.5.5 without the layout shifting.
