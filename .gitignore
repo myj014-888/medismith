@@ -1,0 +1,18 @@
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Raw team-board screenshot used as a crop source (not a site asset)
+board.png
+board.jpg
+board.jpeg
+
+# Alignment preview written by tools/crop-faces.py
+tools/_contact-sheet.jpg
+
+# Logs
+*.log
