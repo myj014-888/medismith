@@ -97,11 +97,11 @@ h1,h2,h3{ margin:0; font-weight:400; }
 .nav.menu-open{ background:rgba(223,203,184,.98) }
 
 .nav__brand{
-  display:flex; align-items:center; gap:.6rem;
-  font-family:'Cormorant Garamond',serif; font-size:1.5rem; letter-spacing:.01em;
+  display:flex; align-items:center; gap:.7rem;
+  font-family:'Cormorant Garamond',serif; font-size:1.95rem; letter-spacing:.01em;
   margin-right:auto;
 }
-.nav__mark{ width:18px; height:18px; color:var(--gold-true); flex:none }
+.nav__mark{ width:30px; height:30px; color:var(--gold-true); flex:none }
 .nav__links{ display:flex; align-items:center; gap:2rem; }
 
 /* ── hamburger ─────────────────────────────────────
@@ -168,8 +168,8 @@ h1,h2,h3{ margin:0; font-weight:400; }
 @media (max-width:768px){
   .nav__toggle{ display:inline-flex }
 
+  /* the mark stays at its base 30px here; only the wordmark steps down */
   .nav__brand{ font-size:1.8rem; gap:.55rem }
-  .nav__mark{ width:30px; height:30px }
 
   .nav__links{
     position:absolute; top:100%; left:0; right:0;
