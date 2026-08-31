@@ -191,8 +191,9 @@ the Open Graph block in `index.html` marks the spot.
       cream, so it can't be used directly.
 - [ ] Practice website URLs for the remaining seven — add `data-web` to enable
       the second button (Nicola Mostert and Annette Pennazza are live)
-- [ ] Bios for Annette Pennazza and the six others are still generic
-      discipline descriptions, not their own words
+- [ ] Six bios are still generic discipline descriptions rather than the
+      practitioner's own words (Maroné Vivier, Nicola Mostert and Annette
+      Pennazza have supplied copy)
 - [ ] Confirm Ciska Kruger's number: `0212013304` sits oddly against
       Dr Annwin Strohmenger's `0212913303`
 - [ ] Consulting hours, if they should be shown
