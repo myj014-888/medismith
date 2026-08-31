@@ -27,9 +27,13 @@ index.html          markup, practitioner data, SVG sprite, schema.org JSON-LD
 css/styles.css      the whole stylesheet
 js/main.js          modal, scroll reveals, WhatsApp links, image fallbacks
 assets/
-  logo-board.png    supplied brand board (reference only — not used by the page)
+  logo-board.png    supplied brand board — source for the two assets below
+  og-image.jpg      1200x630 social card
+  favicon.png       180x180 tab icon / apple-touch-icon
   team/             practitioner portraits
-tools/crop-faces.py helper for cropping portraits out of the Canva team board
+tools/
+  crop-faces.py         cuts portraits out of the Canva team board
+  make-social-assets.py regenerates og-image.jpg and favicon.png
 ```
 
 ## Palette
@@ -48,9 +52,16 @@ Sampled directly from the supplied logo board:
 The green is not from the logo — the logo's darkest tone is a warm charcoal
 (`#272521`). It was taken from the practice photography.
 
-Sections that sit on cream (`.nav`, `.hero`, `.team`) re-point the text tokens
-in a single block; `.card` opts back into the green set. All text/ground pairs
-were checked against WCAG AA — the lowest is 4.68:1.
+The page alternates ground: cream hero, black practitioner grid, cream
+disciplines band, green visit block, black footer. Sections that sit on cream
+(`.nav`, `.hero`, `.disciplines`) re-point the text tokens in a single block;
+everything on a dark ground uses the root tokens. All text/ground pairs were
+checked against WCAG AA — the lowest is 5.1:1.
+
+The practitioner grid carries pointer-only micro-interactions: a gold spotlight
+tracking the cursor, a few degrees of tilt per card, a staggered entrance and a
+rule that draws itself under the section title. All of it is gated behind
+`(hover: hover) and (pointer: fine)` and `prefers-reduced-motion`.
 
 ## Adding practitioners
 
@@ -96,13 +107,23 @@ without the flag to write the files. Note that each face is only ~167×198px in
 that screenshot, so the results are soft — original photography is needed before
 launch.
 
+## Deploying
+
+Static site, `index.html` at the root — no build step. On Vercel: import the
+repo, framework preset **Other**, leave the build command and output directory
+empty.
+
+`index.html` carries no `<link rel="canonical">` and its `og:image` is a
+relative path, which is deliberate — there is no production domain yet. Once one
+is connected, add the canonical and make `og:image` absolute; the comment above
+the Open Graph block in `index.html` marks the spot.
+
 ## Outstanding
 
 - [ ] Original practitioner photography (nine of ten still on monograms)
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
-- [ ] Favicon at `assets/favicon.png`
 - [ ] Practice website URLs — add `data-web` to enable the second button
 - [ ] Confirm Ciska Kruger's number: `0212013304` sits oddly against
       Dr Annwin Strohmenger's `0212913303`
