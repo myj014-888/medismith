@@ -184,11 +184,12 @@ the Open Graph block in `index.html` marks the spot.
 
 ## Outstanding
 
-- [ ] Original practitioner photography (seven of nine still on monograms)
+- [ ] Original practitioner photography (six of nine still on monograms)
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
-- [ ] Practice website URLs — add `data-web` to enable the second button
+- [ ] Practice website URLs for the remaining eight — add `data-web` to enable
+      the second button (Nicola Mostert's is live)
 - [ ] Confirm Ciska Kruger's number: `0212013304` sits oddly against
       Dr Annwin Strohmenger's `0212913303`
 - [ ] Consulting hours, if they should be shown
