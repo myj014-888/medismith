@@ -15,7 +15,6 @@ PORTRAITS  (assets/team/ — portrait crop, 4:5, min 800x1000, JPG)
   tania-cameron.jpg
   christelle-lotriet.jpg
   marone-vivier.jpg
-  kayla-van-zyl.jpg
   nicola-mostert.jpg
   annette-pennazza.jpg
 

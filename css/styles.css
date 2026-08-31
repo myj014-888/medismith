@@ -30,10 +30,6 @@
   --max: 1240px;
 }
 
-/* On a large monitor 1240px gives four columns, so ten practitioners land
-   as 4+4+2. Widening to 1560 gives five columns and two even rows. */
-@media (min-width:1700px){ :root{ --max:1560px } }
-
 *,*::before,*::after{ box-sizing:border-box; }
 
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
@@ -234,11 +230,12 @@ h1,h2,h3{ margin:0; font-weight:400; }
 .btn{ min-height:44px }
 .nav__links a::before,
 .hero__addr::before,
-.modal__tel::before{
+.modal__tel::before,
+.modal__email::before{
   content:''; position:absolute; left:-8px; right:-8px;
   top:50%; height:44px; transform:translateY(-50%);
 }
-.hero__addr,.modal__tel{ position:relative }
+.hero__addr,.modal__tel,.modal__email{ position:relative }
 
 /* ═══ HERO ═════════════════════════════════════════ */
 .hero{
@@ -374,6 +371,10 @@ h1,h2,h3{ margin:0; font-weight:400; }
   display:grid; gap:clamp(1rem,2.2vw,1.8rem);
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
 }
+/* Nine practitioners: pinned to three columns on desktop so they fall as a
+   clean 3x3, the way the practice's own board reads. Left to auto-fill, a
+   wide screen makes four columns and strands a single card on the last row. */
+@media (min-width:1000px){ .grid{ grid-template-columns:repeat(3,1fr) } }
 
 /* the cards stay green panels standing on the cream ground, so the
    portrait scrim and its overlaid type keep working as before */
@@ -558,12 +559,19 @@ h1,h2,h3{ margin:0; font-weight:400; }
   margin:0; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-faint);
 }
 .modal__bio{ margin:1.4rem 0 1.6rem; color:var(--cream-dim); font-size:.96rem; line-height:1.85 }
-.modal__tel{
-  display:inline-block; font-size:.8rem; letter-spacing:.12em; color:var(--cream);
-  border-bottom:1px solid var(--line); padding-bottom:2px; margin-bottom:1.8rem;
+/* A wrapper carries the gap to the buttons, so a hidden email simply
+   collapses instead of leaving the phone with the wrong spacing. */
+.modal__contact{
+  display:flex; flex-direction:column; align-items:flex-start;
+  gap:.65rem; margin:0 0 1.8rem;
+}
+.modal__tel,.modal__email{
+  font-size:.8rem; letter-spacing:.12em; color:var(--cream);
+  border-bottom:1px solid var(--line); padding-bottom:2px;
   transition:color .3s,border-color .3s;
 }
-.modal__tel:hover{ color:var(--gold); border-color:var(--gold) }
+.modal__email{ letter-spacing:.03em; text-transform:none; word-break:break-all }
+.modal__tel:hover,.modal__email:hover{ color:var(--gold); border-color:var(--gold) }
 .modal__actions{ display:flex; gap:.7rem; flex-wrap:wrap }
 .modal__note{ margin:1.1rem 0 0; font-size:.66rem; letter-spacing:.1em; color:var(--cream-faint) }
 

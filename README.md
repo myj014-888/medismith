@@ -3,7 +3,7 @@
 One-page site for MediSmith, an interdisciplinary medical and therapy centre at
 11 Van Der Lingen Street, Paarl, 7646, South Africa.
 
-Ten practitioners across nine disciplines. Each has a card; clicking a card opens
+Nine practitioners, one per discipline. Each has a card; clicking a card opens
 a flash-card modal with their details, a WhatsApp link, and a placeholder for
 their practice website.
 
@@ -109,7 +109,8 @@ attributes:
 | `data-name` | full name as displayed |
 | `data-role` | discipline |
 | `data-practice` | practice name; falls back to "MediSmith" when blank |
-| `data-tel` | SA number, e.g. `0724056743`. Blank disables the phone line and WhatsApp button |
+| `data-tel` | SA number, e.g. `0785944858`. Blank disables the phone line and WhatsApp button |
+| `data-email` | optional; blank hides the email line entirely |
 | `data-web` | practice URL. Blank leaves the website button disabled with a "coming soon" note |
 | `data-img` | portrait path; a missing file falls back to a gold monogram |
 | `data-bio` | modal copy |
@@ -124,8 +125,7 @@ Portraits go in `assets/team/` as 4:5 JPGs, minimum 800×1000:
 ```
 annwin-strohmenger.jpg   ciska-kruger.jpg        emcy-louw.jpg
 rene-van-schalkwyk.jpg   tania-cameron.jpg       christelle-lotriet.jpg
-marone-vivier.jpg        kayla-van-zyl.jpg       nicola-mostert.jpg
-annette-pennazza.jpg
+marone-vivier.jpg        nicola-mostert.jpg      annette-pennazza.jpg
 ```
 
 Any that are missing render as a gold monogram instead, so they can be added one
@@ -153,8 +153,10 @@ viewport, and every interactive target at least 44x44 at all of them.
 | --- | --- |
 | < 600px | 1 column |
 | 600-1000px | 2 columns |
-| 1000-1600px | 3-4 columns |
-| >= 1700px | 5 columns — ten cards fall as two even rows |
+| >= 1000px | pinned to 3 columns — nine cards as a clean 3x3 |
+
+The three-column pin is deliberate. Left to `auto-fill`, a wide screen makes
+four columns and strands a single card alone on the last row.
 
 Below 768px the nav links collapse into a dropdown behind a hamburger, which
 frees the bar for a larger logo — a 30px mark with the wordmark alongside,
@@ -182,7 +184,7 @@ the Open Graph block in `index.html` marks the spot.
 
 ## Outstanding
 
-- [ ] Original practitioner photography (nine of ten still on monograms)
+- [ ] Original practitioner photography (seven of nine still on monograms)
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.

@@ -213,6 +213,7 @@
   var mPract   = document.getElementById('modalPractice');
   var mBio     = document.getElementById('modalBio');
   var mTel     = document.getElementById('modalTel');
+  var mEmail   = document.getElementById('modalEmail');
   var mWa      = document.getElementById('modalWa');
   var mWeb     = document.getElementById('modalWeb');
   var mNote    = modal.querySelector('.modal__note');
@@ -242,6 +243,17 @@
       mWa.href = '#';
       mWa.removeAttribute('target');
       mWa.setAttribute('aria-disabled', 'true');
+    }
+
+    // Email is optional per practitioner, same as the phone.
+    var hasEmail = !!(d.email && d.email.trim());
+    if (hasEmail) {
+      mEmail.hidden = false;
+      mEmail.textContent = d.email.trim();
+      mEmail.href = 'mailto:' + d.email.trim();
+    } else {
+      mEmail.hidden = true;
+      mEmail.removeAttribute('href');
     }
 
     // Website buttons are placeholders until each practice supplies a URL.
