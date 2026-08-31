@@ -26,11 +26,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/scroll-fx.css">
 
 <!-- Reveal animations start at opacity:0 and are switched on by main.js. If the
-     script fails to load, the page would render blank — this guarantees content. -->
+     script fails to load, the page would render blank — this guarantees content.
+     The hero is driven by CSS keyframes instead, so it needs no rescue here. -->
 <noscript><style>
   .reveal{ opacity:1 !important; transform:none !important }
+  [data-scroll-fx]{ opacity:1 !important; filter:none !important; clip-path:none !important }
+  [data-scroll-fx="split-lines"] > span{ opacity:1 !important; transform:none !important }
   .card{ cursor:default }
 </style></noscript>
 
@@ -76,10 +80,18 @@
 
 <!-- ───────────────────────── HERO ───────────────────────── -->
 <main id="top">
-<section class="hero">
-  <div class="hero__inner">
+<section class="hero" data-hero>
 
-    <div class="hero__logo reveal">
+  <!-- Three depth layers. They leave at different rates on scroll, which is
+       the whole illusion — see the hero module in js/scroll-fx.js. -->
+  <div class="hero__aura" data-hero-layer data-hero-rate="150" aria-hidden="true"></div>
+  <div class="hero__watermark" data-hero-layer data-hero-rate="95" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><use href="#ms-cross"></use></svg>
+  </div>
+
+  <div class="hero__inner" data-hero-layer data-hero-rate="26">
+
+    <div class="hero__logo">
       <!-- Drop your supplied logo at assets/logo.png and it replaces the mark below automatically -->
       <img src="assets/logo.png" alt="MediSmith" class="hero__logoimg" data-fallback>
       <div class="hero__logofallback">
@@ -89,12 +101,12 @@
       </div>
     </div>
 
-    <p class="hero__lede reveal" data-delay="1">
+    <p class="hero__lede">
       An interdisciplinary medical and therapeutic centre. Bringing excellence in
       healthcare with warmth and care, in the heart of Paarl.
     </p>
 
-    <div class="hero__meta reveal" data-delay="2">
+    <div class="hero__meta">
       <a class="hero__addr" href="https://maps.google.com/?q=11+Van+Der+Lingen+Street,+Paarl,+7646,+South+Africa" target="_blank" rel="noopener">
         11 Van Der Lingen Street, Paarl, 7646
       </a>
@@ -102,7 +114,7 @@
       <span>Nine disciplines. One address.</span>
     </div>
 
-    <a class="hero__scroll reveal" data-delay="3" href="#team" aria-label="Scroll to practitioners">
+    <a class="hero__scroll" href="#team" aria-label="Scroll to practitioners">
       <span></span>
     </a>
   </div>
@@ -111,8 +123,8 @@
 <!-- ───────────────────────── TEAM ───────────────────────── -->
 <section class="team" id="team">
   <div class="section__head reveal">
-    <p class="eyebrow">Our practitioners</p>
-    <h2 class="section__title">Care, under one roof</h2>
+    <p class="eyebrow" data-scroll-fx="blur-stagger">Our practitioners</p>
+    <h2 class="section__title" data-scroll-fx="split-lines"><span>Care, under</span><br><span>one roof</span></h2>
     <p class="section__sub">Select a practitioner to view their details, or reach them directly on WhatsApp.</p>
   </div>
 
@@ -294,8 +306,8 @@
 <!-- ───────────────────────── DISCIPLINES ───────────────────────── -->
 <section class="disciplines" id="disciplines">
   <div class="section__head reveal">
-    <p class="eyebrow">Under this roof</p>
-    <h2 class="section__title">Nine disciplines, one conversation</h2>
+    <p class="eyebrow" data-scroll-fx="blur-stagger">Under this roof</p>
+    <h2 class="section__title" data-scroll-fx="clip-reveal">Nine disciplines, one conversation</h2>
     <p class="section__sub">Because our practitioners share a building, they share a patient too — referrals happen down the corridor, not across town.</p>
   </div>
   <ul class="disc__list">
@@ -315,8 +327,8 @@
 <section class="visit" id="visit">
   <div class="visit__grid">
     <div class="reveal">
-      <p class="eyebrow">Visit us</p>
-      <h2 class="section__title">In the heart of Paarl</h2>
+      <p class="eyebrow" data-scroll-fx="blur-stagger">Visit us</p>
+      <h2 class="section__title" data-scroll-fx="split-lines"><span>In the heart</span><br><span>of Paarl</span></h2>
       <address class="visit__addr">
         11 Van Der Lingen Street<br>
         Esterville, Paarl, 7646<br>
@@ -327,7 +339,7 @@
         <a class="btn btn--ghost" href="#team">Contact a practitioner</a>
       </div>
     </div>
-    <div class="visit__map reveal" data-delay="1">
+    <div class="visit__map" data-scroll-fx="scale-in">
       <iframe
         title="Map of MediSmith, 11 Van Der Lingen Street, Paarl"
         src="https://www.google.com/maps?q=11%20Van%20Der%20Lingen%20Street,%20Paarl,%207646,%20South%20Africa&output=embed"
@@ -341,7 +353,7 @@
 <footer class="foot">
   <div class="foot__inner">
     <div class="foot__brand">
-      <svg class="foot__mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#ms-cross"></use></svg>
+      <svg class="foot__mark" viewBox="0 0 100 100" aria-hidden="true" data-scroll-fx="tilt3d"><use href="#ms-cross"></use></svg>
       <span>medismith</span>
       <em>Mediese en Terapiesentrum</em>
     </div>
@@ -397,5 +409,6 @@
 </svg>
 
 <script src="js/main.js"></script>
+<script src="js/scroll-fx.js"></script>
 </body>
 </html>

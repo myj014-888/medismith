@@ -1,0 +1,82 @@
+/* ═══════════════════════════════════════════════════
+   scroll-fx.css — companion styles for js/scroll-fx.js
+   ═══════════════════════════════════════════════════ */
+
+/* CSS transforms on inline SVG are unreliable without an explicit
+   transform-box — rotateX can silently compute to identity in some engines
+   even when the JS is correct, and nothing errors, the element just sits
+   there. Always set this on an SVG that a transform effect targets. */
+[data-scroll-fx="tilt3d"],
+[data-scroll-fx="scale-in"]{ transform-box:fill-box; transform-origin:50% 100% }
+
+[data-scroll-fx="clip-reveal"]{ will-change:clip-path }
+[data-scroll-fx="split-lines"] > span{ display:inline-block }
+
+/* ── HERO LAYERS ────────────────────────────────────
+   Stacked behind the lockup. Each is a full-bleed container so the
+   parallax transform never fights a centring transform. */
+/* The layers drift up to 150px past the hero's own box on the way out, which
+   would spill a gold glow onto the black section below. Clip it. */
+.hero{ overflow:hidden }
+
+.hero__aura,
+.hero__watermark{ position:absolute; inset:0; pointer-events:none }
+
+.hero__aura{
+  z-index:0;
+  background:
+    radial-gradient(46% 34% at 50% 30%, rgba(168,122,56,.20), transparent 70%),
+    radial-gradient(38% 26% at 22% 68%, rgba(107,74,28,.11), transparent 72%);
+}
+
+.hero__watermark{ z-index:1; display:grid; place-items:center }
+.hero__watermark svg{
+  width:min(64vw,540px); height:auto;
+  color:rgba(18,33,26,.055);
+}
+
+.hero__inner{ position:relative; z-index:2 }
+
+/* ── HERO ENTRY ─────────────────────────────────────
+   The final state lives in the base rules; these keyframes animate FROM a
+   hidden state with fill-mode both. That way, if animations are disabled,
+   everything simply renders in place rather than staying invisible. */
+@keyframes heroMark{
+  from{ opacity:0; transform:scale(.72) rotate(-10deg) }
+  to  { opacity:1; transform:none }
+}
+@keyframes heroWord{
+  from{ opacity:0; clip-path:inset(0 0 100% 0); transform:translateY(38px) }
+  to  { opacity:1; clip-path:inset(0 0 0 0);    transform:none }
+}
+@keyframes heroRule{ from{ opacity:0; letter-spacing:.5em } to{ opacity:1 } }
+@keyframes heroSoft{ from{ opacity:0; filter:blur(9px); transform:translateY(20px) }
+                     to  { opacity:1; filter:blur(0);   transform:none } }
+@keyframes heroCue { from{ opacity:0 } to{ opacity:1 } }
+
+.hero__cross   { animation:heroMark 1.15s var(--ease) both }
+.hero__wordmark{ animation:heroWord 1.30s var(--ease) .18s both }
+.hero__rule    { animation:heroRule 1.10s var(--ease) .52s both }
+.hero__lede    { animation:heroSoft 1.10s var(--ease) .66s both }
+.hero__meta    { animation:heroSoft 1.10s var(--ease) .82s both }
+.hero__scroll  { animation:heroCue  1.00s var(--ease) 1.15s both }
+
+/* the flanking gold rules draw outward once the line has settled */
+@keyframes heroRuleArm{ from{ transform:scaleX(0) } to{ transform:scaleX(1) } }
+.hero__rule::before{ transform-origin:right center }
+.hero__rule::after { transform-origin:left center }
+.hero__rule::before,
+.hero__rule::after { animation:heroRuleArm .9s var(--ease) .95s both }
+
+/* ── REDUCED MOTION ─────────────────────────────────
+   The engine bails out in JS; this covers the CSS half. Everything lands
+   in its resting state with no entry animation and no drift. */
+@media (prefers-reduced-motion:reduce){
+  [data-scroll-fx]{
+    opacity:1 !important; transform:none !important;
+    filter:none !important; clip-path:none !important;
+  }
+  [data-scroll-fx="split-lines"] > span{ opacity:1 !important; transform:none !important }
+  .hero__aura,.hero__watermark,.hero__inner{ transform:none !important; filter:none !important }
+  .hero__watermark{ display:none }
+}

@@ -25,7 +25,9 @@ works, though the embedded map behaves better over `http://`.
 ```
 index.html          markup, practitioner data, SVG sprite, schema.org JSON-LD
 css/styles.css      the whole stylesheet
-js/main.js          modal, scroll reveals, WhatsApp links, image fallbacks
+css/scroll-fx.css   hero layers, hero entry keyframes, effect support rules
+js/main.js          modal, nav menu, reveals, WhatsApp links, image fallbacks
+js/scroll-fx.js     scroll-linked effect engine + the hero parallax module
 assets/
   logo-board.png    supplied brand board — source for the two assets below
   og-image.jpg      1200x630 social card
@@ -62,6 +64,40 @@ The practitioner grid carries pointer-only micro-interactions: a gold spotlight
 tracking the cursor, a few degrees of tilt per card, a staggered entrance and a
 rule that draws itself under the section title. All of it is gated behind
 `(hover: hover) and (pointer: fine)` and `prefers-reduced-motion`.
+
+## Motion
+
+`js/scroll-fx.js` is a dependency-free scroll engine. Add `data-scroll-fx` to
+any element:
+
+| Value | Effect |
+| --- | --- |
+| `parallax` | vertical drift, continuous; rate in px via `data-fx-rate` |
+| `tilt3d` | 3D rotateX settling in and out |
+| `scale-in` | 0.9 → 1 with opacity |
+| `clip-reveal` | clip-path wipe, bottom to top |
+| `split-lines` | direct child `<span>`s stagger up |
+| `blur-stagger` | blur(10px) → 0 with opacity |
+
+Effects run a full **appear → hold → disappear** lifecycle: they reverse as the
+element leaves through the top, rather than revealing once and sticking.
+Progress is the element's distance from the viewport centre, discounted by the
+closest it could possibly get — without that discount anything in the first or
+last screenful can never be centred, and the footer mark sat permanently at 50%
+opacity and 17 degrees of tilt.
+
+The hero is its own module. Three layers — aura, watermark cross, lockup —
+leave at 150px, 95px and 26px respectively, and that difference in rate is the
+depth. The lockup also fades, and blurs to 6px, clearing before the black
+section arrives. The hero is `overflow:hidden` because the layers otherwise
+drift 150px onto the section below.
+
+Entry is CSS keyframes, not JS: mark, wordmark, rule, lede, meta and scroll cue
+staggered across 1.15s. Final states live in the base rules and the keyframes
+animate *from* hidden, so if animation is disabled everything still renders.
+
+Both engines short-circuit under `prefers-reduced-motion` — parallax can cause
+real motion sickness, so this is a requirement rather than a preference.
 
 ## Adding practitioners
 
