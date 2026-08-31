@@ -107,6 +107,27 @@ without the flag to write the files. Note that each face is only ~167×198px in
 that screenshot, so the results are soft — original photography is needed before
 launch.
 
+## Responsive behaviour
+
+Audited at 320x640, 390x844, 768x1024, 1024x768, 1440x900, 1920x1080 and
+844x390 (phone in landscape). No horizontal overflow, nothing escaping the
+viewport, and every interactive target at least 44x44 at all of them.
+
+| Width | Grid |
+| --- | --- |
+| < 600px | 1 column |
+| 600-1000px | 2 columns |
+| 1000-1600px | 3-4 columns |
+| >= 1700px | 5 columns — ten cards fall as two even rows |
+
+Two cases get their own treatment: below 400px the nav tightens so three
+links plus the 44px brand still fit, and a landscape phone (max-height 540px)
+gets a compressed hero and a shorter modal, since at full size the hero ran to
+twice the viewport height.
+
+Inline links widen their tap area with an invisible `::before` rather than real
+padding, so hit targets meet WCAG 2.5.5 without the layout shifting.
+
 ## Deploying
 
 Static site, `index.html` at the root — no build step. On Vercel: import the
