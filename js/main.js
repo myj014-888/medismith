@@ -22,14 +22,69 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
+          var el = e.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // drop the stagger once it has played, or it would also delay
+          // the hover transitions on the same element
+          if (el.style.transitionDelay) {
+            setTimeout(function () { el.style.transitionDelay = ''; }, 1400);
+          }
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ── micro-interactions (section 1) ────────────────
+     Pointer-driven only, and skipped entirely on touch or when the
+     visitor has asked for reduced motion. */
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var calmMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var wantsMotion = finePointer && !calmMotion;
+
+  var team = document.getElementById('team');
+
+  if (wantsMotion && team) {
+    // gold spotlight follows the cursor across the grid
+    var raf = null, mx = 0, my = 0;
+    team.addEventListener('pointerenter', function () { team.classList.add('is-live'); });
+    team.addEventListener('pointerleave', function () { team.classList.remove('is-live'); });
+    team.addEventListener('pointermove', function (e) {
+      var r = team.getBoundingClientRect();
+      mx = ((e.clientX - r.left) / r.width) * 100;
+      my = ((e.clientY - r.top) / r.height) * 100;
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        team.style.setProperty('--mx', mx.toFixed(2) + '%');
+        team.style.setProperty('--my', my.toFixed(2) + '%');
+        raf = null;
+      });
+    });
+  }
+
+  // each card leans a few degrees toward the pointer
+  function addTilt(card) {
+    var frame = null;
+    card.addEventListener('pointerenter', function () { card.classList.add('is-tilt'); });
+    card.addEventListener('pointermove', function (e) {
+      if (frame) return;
+      frame = requestAnimationFrame(function () {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty('--ry', (px * 6).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', (-py * 6).toFixed(2) + 'deg');
+        frame = null;
+      });
+    });
+    card.addEventListener('pointerleave', function () {
+      card.classList.remove('is-tilt');
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
   }
 
   /* ── helpers ───────────────────────────────────── */
@@ -88,9 +143,13 @@
   /* ── cards ─────────────────────────────────────── */
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
-  cards.forEach(function (card) {
+  cards.forEach(function (card, i) {
     var media = card.querySelector('.card__media');
     var initials = card.querySelector('.card__initials');
+
+    // stagger the entrance so the grid resolves row by row
+    if (!calmMotion) card.style.transitionDelay = (Math.min(i, 11) * 0.055).toFixed(3) + 's';
+    if (wantsMotion) addTilt(card);
 
     // derive monogram from the name
     if (initials && !initials.textContent.trim()) {

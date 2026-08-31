@@ -136,10 +136,10 @@ h1,h2,h3{ margin:0; font-weight:400; }
 }
 
 /* ═══ THE CREAM GROUND ═════════════════════════════
-   The nav, hero and practitioner grid sit on the logo board's cream.
+   The nav, hero and disciplines band sit on the logo board's cream.
    Re-pointing the text tokens here re-tints everything inside in one
-   move; the cards below opt back out into green. */
-.nav,.hero,.team{
+   move. Sections on a dark ground just use the root tokens. */
+.nav,.hero,.disciplines{
   --cream:      #12211A;
   --cream-dim:  rgba(18,33,26,.78);
   --cream-faint:rgba(18,33,26,.68);
@@ -148,10 +148,10 @@ h1,h2,h3{ margin:0; font-weight:400; }
   --line-soft:  rgba(18,33,26,.11);
   color:#12211A;
 }
-.hero,.team{ background:var(--sand) }
+.hero,.disciplines{ background:var(--sand) }
 
 /* on cream, a gold-filled button needs light type */
-.hero .btn--gold,.team .btn--gold{ color:#F0E7DC }
+.hero .btn--gold,.disciplines .btn--gold{ color:#F0E7DC }
 
 /* ═══ HERO ═════════════════════════════════════════ */
 .hero{
@@ -220,6 +220,29 @@ h1,h2,h3{ margin:0; font-weight:400; }
 
 /* ═══ SECTION SHARED ═══════════════════════════════ */
 .team,.disciplines,.visit{ padding:clamp(5rem,11vw,9rem) clamp(1.1rem,5vw,3rem) }
+
+/* ═══ SECTION 1 — the black stage ══════════════════
+   Cards are unchanged; the ground drops to black and a gold spotlight
+   tracks the cursor across the grid. Both are pointer-only and both
+   stand down under prefers-reduced-motion. */
+.team{ position:relative; background:#000; isolation:isolate }
+.team::before{
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(460px circle at var(--mx,50%) var(--my,30%),
+             rgba(192,141,69,.11), transparent 68%);
+  opacity:0; transition:opacity .6s var(--ease);
+}
+.team.is-live::before{ opacity:1 }
+.team .section__head,.team .grid{ position:relative; z-index:1 }
+
+/* a hairline that draws itself in under the section title */
+.team .section__title{ position:relative; padding-bottom:1.1rem }
+.team .section__title::after{
+  content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  transition:width 1.2s var(--ease) .3s;
+}
+.team .section__head.in .section__title::after{ width:min(320px,60%) }
 .section__head{ max-width:var(--max); margin:0 auto clamp(3rem,6vw,4.5rem) }
 .eyebrow{
   margin:0 0 1rem; font-size:.7rem; letter-spacing:.28em; text-transform:uppercase;
@@ -254,14 +277,24 @@ h1,h2,h3{ margin:0; font-weight:400; }
   --line-soft:  rgba(223,203,184,.09);
 
   position:relative; cursor:pointer; overflow:hidden; color:var(--cream);
-  background:var(--ink-2); border:1px solid rgba(18,33,26,.14);
-  box-shadow:0 1px 2px rgba(18,33,26,.06);
+  background:var(--ink-2); border:1px solid var(--line-soft);
   transition:border-color .5s var(--ease), transform .5s var(--ease),
              background .5s var(--ease), box-shadow .5s var(--ease);
 }
-.card:hover,.card:focus-visible{ box-shadow:0 18px 40px -18px rgba(18,33,26,.45) }
+.card:hover,.card:focus-visible{ box-shadow:0 22px 55px -24px rgba(192,141,69,.45) }
+
+/* cursor tilt — the card leans a few degrees toward the pointer */
 .card:hover,.card:focus-visible{
-  border-color:rgba(192,141,69,.55); transform:translateY(-6px); background:var(--ink-3);
+  transform:perspective(900px)
+            rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))
+            translateY(-6px);
+}
+.card.is-tilt{
+  transition:transform .12s linear, border-color .5s var(--ease),
+             background .5s var(--ease), box-shadow .5s var(--ease);
+}
+.card:hover,.card:focus-visible{
+  border-color:rgba(192,141,69,.55); background:var(--ink-3);
 }
 .card:focus-visible{ outline:1px solid var(--gold); outline-offset:3px }
 
@@ -315,9 +348,10 @@ h1,h2,h3{ margin:0; font-weight:400; }
   opacity:1; transform:scale(1); border-color:rgba(192,141,69,.5);
 }
 
-/* ═══ DISCIPLINES — the green band ═════════════════
-   The page drops into forest here and stays there to the footer. */
-.disciplines{ background:var(--ink-2); border-top:1px solid var(--line-soft) }
+/* ═══ SECTION 2 — DISCIPLINES, the cream band ══════
+   Reversed: the page comes back up into the logo board's own colours
+   between the black grid and the green visit block. */
+.disciplines{ border-top:1px solid var(--line-soft) }
 .disc__list{
   max-width:var(--max); margin:0 auto; padding:0; list-style:none;
   border-top:1px solid var(--line-soft);
@@ -361,7 +395,7 @@ h1,h2,h3{ margin:0; font-weight:400; }
 }
 
 /* ═══ FOOTER ═══════════════════════════════════════ */
-.foot{ border-top:1px solid var(--line-soft); background:var(--ink-deep) }
+.foot{ border-top:1px solid var(--line-soft); background:#000 }
 .foot__inner{
   max-width:var(--max); margin:0 auto;
   padding:3rem clamp(1.1rem,5vw,3rem);
