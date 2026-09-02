@@ -234,12 +234,20 @@
       mTel.hidden = false;
       mTel.textContent = prettyTel(d.tel);
       mTel.href = 'tel:+' + waNumber(d.tel);
-      mWa.href = 'https://wa.me/' + waNumber(d.tel) + '?text=' +
+    } else {
+      mTel.hidden = true;
+    }
+
+    // Several practitioners are on a landline, which WhatsApp cannot use, so
+    // data-wa carries a separate mobile. It falls back to data-tel when the
+    // listed number is already a mobile.
+    var waRaw = String(d.wa || d.tel || '').replace(/\D/g, '');
+    if (waRaw) {
+      mWa.href = 'https://wa.me/' + waNumber(waRaw) + '?text=' +
         encodeURIComponent('Hi ' + d.name + ', I found you via the MediSmith website and would like to book an appointment.');
       mWa.target = '_blank';
       mWa.removeAttribute('aria-disabled');
     } else {
-      mTel.hidden = true;
       mWa.href = '#';
       mWa.removeAttribute('target');
       mWa.setAttribute('aria-disabled', 'true');

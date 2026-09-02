@@ -109,7 +109,8 @@ attributes:
 | `data-name` | full name as displayed |
 | `data-role` | discipline |
 | `data-practice` | practice name; falls back to "MediSmith" when blank |
-| `data-tel` | SA number, e.g. `0785944858`. Blank disables the phone line and WhatsApp button |
+| `data-tel` | the number shown and dialled, e.g. `0785944858`. Blank hides the phone line |
+| `data-wa` | optional separate WhatsApp mobile. Needed when `data-tel` is a landline, since WhatsApp cannot use `021` numbers. Falls back to `data-tel` |
 | `data-email` | optional; blank hides the email line entirely |
 | `data-web` | practice URL. Blank leaves the website button disabled with a "coming soon" note |
 | `data-img` | portrait path; a missing file falls back to a gold monogram |
@@ -117,6 +118,11 @@ attributes:
 
 WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
+
+Strohmenger and Kruger are listed on the practice landline (`021`), which
+WhatsApp rejects, so both carry `data-wa="0615831552"` — the shared DentalWize
+/ SmileSmiths mobile. The card shows the landline to call and sends WhatsApp to
+the mobile.
 
 ## Photos
 
@@ -200,6 +206,6 @@ the Open Graph block in `index.html` marks the spot.
 - [ ] Six bios are still generic discipline descriptions rather than the
       practitioner's own words (Maroné Vivier, Nicola Mostert and Annette
       Pennazza have supplied copy)
-- [ ] Confirm Ciska Kruger's number: `0212013304` sits oddly against
-      Dr Annwin Strohmenger's `0212913303`
+- [ ] Confirm Ciska Kruger's landline `0212013304` against Dr Annwin
+      Strohmenger's `0212913303` — they differ by one digit in the middle
 - [ ] Consulting hours, if they should be shown
