@@ -128,8 +128,8 @@ rene-van-schalkwyk.jpg   tania-cameron.jpg       christelle-lotriet.jpg
 marone-vivier.jpg        nicola-mostert.jpg      annette-pennazza.jpg
 ```
 
-Any that are missing render as a gold monogram instead, so they can be added one
-at a time without breaking the page.
+All nine are now in place. The monogram fallback stays in the code, so a
+replacement can be dropped in at any time without breaking the page.
 
 `tools/crop-faces.py` can cut the nine faces out of the Canva team-board
 screenshot as a stopgap. Save the screenshot as `board.png` in the project root:
@@ -184,11 +184,14 @@ the Open Graph block in `index.html` marks the spot.
 
 ## Outstanding
 
-- [ ] Original practitioner photography (four of nine still on monograms:
-      Louw, Van Schalkwyk, Cameron, Lotriet)
-- [ ] Dr Strohmenger's portrait is shot on a light grey studio background
-      while the rest are dark and environmental, so her card reads brighter
-      than the other eight in the grid
+- [ ] Three portraits sit on light studio backgrounds (Strohmenger 163,
+      Kruger 198, Lotriet 204 mean edge brightness) while six are dark
+      (2-58), so those three cards read noticeably brighter in the grid.
+      Either accept the mix, key the light three onto a dark backdrop, or
+      reshoot to match.
+- [ ] René V. Schalkwyk's portrait came in at 612x660 against ~1000x1500
+      for the rest, so it is upscaled 1.5x and framed tighter than the
+      others. A larger original would match better.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
