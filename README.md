@@ -203,7 +203,7 @@ the Open Graph block in `index.html` marks the spot.
       cream, so it can't be used directly.
 - [ ] Practice website URLs for the remaining six — add `data-web` to enable
       the second button (Strohmenger, Mostert and Pennazza are live)
-- [ ] Six bios are still generic discipline descriptions rather than the
-      practitioner's own words (Maroné Vivier, Nicola Mostert and Annette
-      Pennazza have supplied copy)
+- [ ] Five bios are still generic discipline descriptions rather than the
+      practitioner's own words (Vivier, Mostert, Pennazza and Van Schalkwyk
+      have supplied copy)
 - [ ] Consulting hours, if they should be shown
