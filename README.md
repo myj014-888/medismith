@@ -37,8 +37,8 @@ tools/
   crop-faces.py         cuts portraits out of the Canva team board
   make-social-assets.py regenerates og-image.jpg and favicon.png
   extend-portrait.py    widens a too-tightly-framed portrait using wall
-                        sampled from the photo itself (not currently used —
-                        kept for if a future photo arrives framed too tight)
+                        sampled from the photo itself (unused — every portrait
+                        now has enough frame of its own)
 ```
 
 ## Palette
@@ -198,10 +198,6 @@ the Open Graph block in `index.html` marks the spot.
       ones (2-15). With Lotriet moved to third, the whole of row one plus one
       card in row two now read bright against a black section. Either accept
       the mix, key the light four onto a dark backdrop, or reshoot to match.
-- [ ] Van Schalkwyk's source is 643x706 against ~1000x1500 for the rest, so
-      hers is a straight side crop upscaled 1.4x and framed tighter than the
-      others. Extending the frame with tiled wall was tried and reverted — it
-      read as too small. A wider original is the real fix.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
