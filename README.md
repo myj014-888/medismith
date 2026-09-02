@@ -190,14 +190,14 @@ the Open Graph block in `index.html` marks the spot.
 
 ## Outstanding
 
-- [ ] Three portraits sit on light studio backgrounds (Strohmenger 163,
-      Kruger 198, Lotriet 204 mean edge brightness) while six are dark
-      (2-58), so those three cards read noticeably brighter in the grid.
-      Either accept the mix, key the light three onto a dark backdrop, or
-      reshoot to match.
-- [ ] René V. Schalkwyk's portrait came in at 612x660 against ~1000x1500
-      for the rest, so it is upscaled 1.5x and framed tighter than the
-      others. A larger original would match better.
+- [ ] Four portraits sit on light backgrounds (Strohmenger 163, Kruger 198,
+      Lotriet 204, Van Schalkwyk 150 mean edge brightness) against five dark
+      ones (2-15). With Lotriet moved to third, the whole of row one plus one
+      card in row two now read bright against a black section. Either accept
+      the mix, key the light four onto a dark backdrop, or reshoot to match.
+- [ ] Van Schalkwyk's source is 643x706 against ~1000x1500 for the rest, so
+      hers is upscaled 1.4x and framed tighter. A larger original would match
+      better.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
