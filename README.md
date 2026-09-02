@@ -122,10 +122,10 @@ attributes:
 WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
 
-Strohmenger and Kruger are listed on the practice landline (`021`), which
-WhatsApp rejects, so both carry `data-wa="0615831552"` — the shared DentalWize
-/ SmileSmiths mobile. The card shows the landline to call and sends WhatsApp to
-the mobile.
+Strohmenger and Kruger share the practice landline `0212013304` and the mobile
+`0615831552`. WhatsApp rejects `021` numbers, so both carry
+`data-wa="0615831552"` — the card shows the landline to call and sends WhatsApp
+to the mobile. The duplication across those two cards is intentional.
 
 ## Photos
 
@@ -206,6 +206,4 @@ the Open Graph block in `index.html` marks the spot.
 - [ ] Six bios are still generic discipline descriptions rather than the
       practitioner's own words (Maroné Vivier, Nicola Mostert and Annette
       Pennazza have supplied copy)
-- [ ] Confirm Ciska Kruger's landline `0212013304` against Dr Annwin
-      Strohmenger's `0212913303` — they differ by one digit in the middle
 - [ ] Consulting hours, if they should be shown
