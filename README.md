@@ -201,9 +201,9 @@ the Open Graph block in `index.html` marks the spot.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
-- [ ] Practice website URLs for the remaining six — add `data-web` to enable
-      the second button (Strohmenger, Mostert and Pennazza are live)
-- [ ] Five bios are still generic discipline descriptions rather than the
-      practitioner's own words (Vivier, Mostert, Pennazza and Van Schalkwyk
-      have supplied copy)
+- [ ] Practice website URLs for the remaining five — add `data-web` to enable
+      the second button (Strohmenger, Louw, Mostert and Pennazza are live)
+- [ ] Four bios are still generic discipline descriptions rather than the
+      practitioner's own words (Vivier, Mostert, Pennazza, Van Schalkwyk and
+      Louw have supplied copy)
 - [ ] Consulting hours, if they should be shown
