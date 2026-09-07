@@ -193,11 +193,12 @@ the Open Graph block in `index.html` marks the spot.
 
 ## Outstanding
 
-- [ ] Four portraits sit on light backgrounds (Strohmenger 163, Kruger 198,
-      Lotriet 204, Van Schalkwyk 150 mean edge brightness) against five dark
-      ones (2-15). With Lotriet moved to third, the whole of row one plus one
-      card in row two now read bright against a black section. Either accept
-      the mix, key the light four onto a dark backdrop, or reshoot to match.
+- [ ] The portraits come from at least four different shoots and the
+      backgrounds do not match. Mean edge brightness: Lotriet 204, Kruger 198,
+      Strohmenger 163, Van Schalkwyk 128 (light studio or wall) against Louw 45
+      (outdoor greenery), Cameron 10, Mostert 15, Pennazza 13, Vivier 2 (dark
+      indoor). Row one reads bright, row three dark, row two mixed. Either
+      accept the mix, key them all onto one backdrop, or reshoot to match.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
