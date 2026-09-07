@@ -582,6 +582,8 @@ h1,h2,h3{ margin:0; font-weight:400; }
   margin:0; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-faint);
 }
 .modal__bio{ margin:1.4rem 0 1.6rem; color:var(--cream-dim); font-size:.96rem; line-height:1.85 }
+.modal__bio p{ margin:0 0 .85em }
+.modal__bio p:last-child{ margin-bottom:0 }
 /* A wrapper carries the gap to the buttons, so a hidden email simply
    collapses instead of leaving the phone with the wrong spacing. */
 .modal__contact{

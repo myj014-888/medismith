@@ -225,7 +225,16 @@
     mRole.textContent  = d.role;
     mName.textContent  = d.name;
     mPract.textContent = d.practice || 'MediSmith Medical & Therapy Centre';
-    mBio.textContent   = d.bio;
+    // "||" separates paragraphs. Built as real <p> elements with textContent
+    // rather than innerHTML, so a stray < in someone's copy stays literal.
+    mBio.textContent = '';
+    String(d.bio || '').split('||').forEach(function (para) {
+      para = para.trim();
+      if (!para) return;
+      var el = document.createElement('p');
+      el.textContent = para;
+      mBio.appendChild(el);
+    });
 
     // A practitioner without a number yet still gets a card — the phone line
     // and WhatsApp button simply stand down until one is supplied.

@@ -117,7 +117,7 @@ attributes:
 | `data-email` | optional; blank hides the email line entirely |
 | `data-web` | practice URL. Blank leaves the website button disabled with a "coming soon" note |
 | `data-img` | portrait path; a missing file falls back to a gold monogram |
-| `data-bio` | modal copy |
+| `data-bio` | modal copy; `||` separates paragraphs, rendered as real `<p>` elements |
 
 WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
@@ -202,9 +202,14 @@ the Open Graph block in `index.html` marks the spot.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
-- [ ] Practice website URLs for the remaining five — add `data-web` to enable
-      the second button (Strohmenger, Louw, Mostert and Pennazza are live)
+- [ ] Practice website URLs for the remaining three — add `data-web` to enable
+      the second button (Strohmenger, Kruger, Van Schalkwyk, Louw, Mostert and
+      Pennazza are live; Lotriet, Cameron and Vivier outstanding)
 - [ ] Four bios are still generic discipline descriptions rather than the
       practitioner's own words (Vivier, Mostert, Pennazza, Van Schalkwyk and
       Louw have supplied copy)
+
+Note: renevanschalkwyk.co.za answers 406 to a bare curl — its host blocks
+requests without full browser headers. It is fine in a real browser; do not
+mistake that for a dead link when auditing.
 - [ ] Consulting hours, if they should be shown
