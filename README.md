@@ -122,10 +122,11 @@ attributes:
 WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
 
-Strohmenger and Kruger share the practice landline `0212013304` and the mobile
-`0615831552`. WhatsApp rejects `021` numbers, so both carry
-`data-wa="0615831552"` — the card shows the landline to call and sends WhatsApp
-to the mobile. The duplication across those two cards is intentional.
+Strohmenger (`0212913303`) and Kruger (`0212013304`) are on separate practice
+landlines that differ by one digit in the middle — that is correct, not a typo.
+They share the mobile `0615831552`. WhatsApp rejects `021` numbers, so both
+carry `data-wa="0615831552"` — the card shows the landline to call and sends
+WhatsApp to the mobile.
 
 ## Photos
 
@@ -202,9 +203,8 @@ the Open Graph block in `index.html` marks the spot.
 - [ ] Transparent logo PNG at `assets/logo.png` — it replaces the fallback
       wordmark in the hero automatically. The supplied board is a wall mockup on
       cream, so it can't be used directly.
-- [ ] Practice website URLs for the remaining three — add `data-web` to enable
-      the second button (Strohmenger, Kruger, Van Schalkwyk, Louw, Mostert and
-      Pennazza are live; Lotriet, Cameron and Vivier outstanding)
+- [ ] Practice website URLs for the remaining two — add `data-web` to enable
+      the second button (seven are live; Cameron and Vivier outstanding)
 - [ ] Four bios are still generic discipline descriptions rather than the
       practitioner's own words (Vivier, Mostert, Pennazza, Van Schalkwyk and
       Louw have supplied copy)
