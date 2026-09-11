@@ -205,9 +205,9 @@ the Open Graph block in `index.html` marks the spot.
       cream, so it can't be used directly.
 - [ ] Practice website URLs for the remaining two — add `data-web` to enable
       the second button (seven are live; Cameron and Vivier outstanding)
-- [ ] Four bios are still generic discipline descriptions rather than the
-      practitioner's own words (Vivier, Mostert, Pennazza, Van Schalkwyk and
-      Louw have supplied copy)
+- [ ] Three bios are still generic discipline descriptions rather than the
+      practitioner's own words (Strohmenger, Kruger and Lotriet). Vivier,
+      Mostert, Pennazza, Van Schalkwyk, Louw and Cameron have supplied copy.
 
 Note: renevanschalkwyk.co.za answers 406 to a bare curl — its host blocks
 requests without full browser headers. It is fine in a real browser; do not
