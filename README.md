@@ -3,7 +3,7 @@
 One-page site for MediSmith, an interdisciplinary medical and therapy centre at
 11 Van Der Lingen Street, Paarl, 7646, South Africa.
 
-Nine practitioners, one per discipline. Each has a card; clicking a card opens
+Eight practitioners, one per discipline. Each has a card; clicking a card opens
 a flash-card modal with their details, a WhatsApp link, and a placeholder for
 their practice website.
 
@@ -122,22 +122,21 @@ attributes:
 WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
 
-Kruger lists the shared mobile `0615831552` directly, so her card needs no
-`data-wa`. Strohmenger lists the practice landline `0212913303`; WhatsApp
-rejects `021` numbers, so hers carries `data-wa="0615831552"` and the card shows
-the landline to call while sending WhatsApp to the mobile.
+`data-wa` is currently unused — every practitioner lists a mobile, so the
+WhatsApp button falls back to `data-tel`. It exists for the case where someone
+lists an `021` landline, which WhatsApp rejects.
 
 ## Photos
 
 Portraits go in `assets/team/` as 4:5 JPGs, minimum 800×1000:
 
 ```
-annwin-strohmenger.jpg   ciska-kruger.jpg        emcy-louw.jpg
-rene-van-schalkwyk.jpg   tania-cameron.jpg       christelle-lotriet.jpg
-marone-vivier.jpg        nicola-mostert.jpg      annette-pennazza.jpg
+ciska-kruger.jpg         emcy-louw.jpg           rene-van-schalkwyk.jpg
+tania-cameron.jpg        christelle-lotriet.jpg  marone-vivier.jpg
+nicola-mostert.jpg       annette-pennazza.jpg
 ```
 
-All nine are now in place. The monogram fallback stays in the code, so a
+All eight are in place. The monogram fallback stays in the code, so a
 replacement can be dropped in at any time without breaking the page.
 
 `tools/crop-faces.py` can cut the nine faces out of the Canva team-board
@@ -162,10 +161,12 @@ viewport, and every interactive target at least 44x44 at all of them.
 | --- | --- |
 | < 600px | 1 column |
 | 600-1000px | 2 columns |
-| >= 1000px | pinned to 3 columns — nine cards as a clean 3x3 |
+| 1000-1239px | 3 columns |
+| >= 1240px | 4 columns — eight cards as two full rows |
 
-The three-column pin is deliberate. Left to `auto-fill`, a wide screen makes
-four columns and strands a single card alone on the last row.
+Eight divides by two and four, not three, so the column counts are pinned
+rather than left to `auto-fill`. The 1000-1239 band is the only one that
+leaves a gap; four columns there would squeeze the cards under 210px.
 
 Below 768px the nav links collapse into a dropdown behind a hamburger, which
 frees the bar for a larger logo — a 30px mark with the wordmark alongside,
@@ -195,7 +196,7 @@ the Open Graph block in `index.html` marks the spot.
 
 - [ ] The portraits come from at least four different shoots and the
       backgrounds do not match. Mean edge brightness: Lotriet 204, Kruger 198,
-      Strohmenger 163, Van Schalkwyk 128 (light studio or wall) against Louw 45
+      Van Schalkwyk 128 (light studio or wall) against Louw 45
       (outdoor greenery), Cameron 10, Mostert 15, Pennazza 13, Vivier 2 (dark
       indoor). Row one reads bright, row three dark, row two mixed. Either
       accept the mix, key them all onto one backdrop, or reshoot to match.
@@ -204,9 +205,9 @@ the Open Graph block in `index.html` marks the spot.
       cream, so it can't be used directly.
 - [ ] Practice website URLs for the remaining two — add `data-web` to enable
       the second button (seven are live; Cameron and Vivier outstanding)
-- [ ] Three bios are still generic discipline descriptions rather than the
-      practitioner's own words (Strohmenger, Kruger and Lotriet). Vivier,
-      Mostert, Pennazza, Van Schalkwyk, Louw and Cameron have supplied copy.
+- [ ] Two bios are still generic discipline descriptions rather than the
+      practitioner's own words (Kruger and Lotriet). Vivier, Mostert,
+      Pennazza, Van Schalkwyk, Louw and Cameron have supplied copy.
 
 Note: renevanschalkwyk.co.za answers 406 to a bare curl — its host blocks
 requests without full browser headers. It is fine in a real browser; do not
