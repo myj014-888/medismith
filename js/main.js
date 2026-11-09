@@ -196,7 +196,7 @@
         .map(function (w) { return w.charAt(0); }).join('').toUpperCase();
     }
 
-    mountPhoto(media, card.dataset.img, card.dataset.name + ' — ' + card.dataset.role);
+    mountPhoto(media, card.dataset.img, card.dataset.name + ', ' + card.dataset.role);
 
     card.addEventListener('click', function () { openModal(card); });
     card.addEventListener('keydown', function (e) {
@@ -296,7 +296,7 @@
     if (old) old.remove();
     mMedia.classList.remove('has-img');
     mInits.textContent = card.querySelector('.card__initials').textContent;
-    mountPhoto(mMedia, d.img, d.name + ' — ' + d.role);
+    mountPhoto(mMedia, d.img, d.name + ', ' + d.role);
 
     lastFocus = document.activeElement;
     modal.hidden = false;
