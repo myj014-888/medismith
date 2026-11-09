@@ -123,7 +123,7 @@ WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
 
 Kruger lists the shared mobile `0615831552` directly, so her card needs no
-`data-wa`. Strohmenger lists the practice landline `0212913303`; WhatsApp
+`data-wa`. Strohmenger lists the practice landline `0212013033`; WhatsApp
 rejects `021` numbers, so hers carries `data-wa="0615831552"` and the card shows
 the landline to call while sending WhatsApp to the mobile.
 
