@@ -8,6 +8,7 @@ LOGO
   assets/favicon.png     <- 512x512 square, gold cross on dark.
 
 PORTRAITS  (assets/team/ — portrait crop, 4:5, min 800x1000, JPG)
+  annwin-strohmenger.jpg
   ciska-kruger.jpg          (already in place)
   emcy-louw.jpg
   rene-van-schalkwyk.jpg

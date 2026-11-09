@@ -371,13 +371,10 @@ h1,h2,h3{ margin:0; font-weight:400; }
   display:grid; gap:clamp(1rem,2.2vw,1.8rem);
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
 }
-/* Eight practitioners divide evenly by two and four, not three. Four columns
-   from 1240px up gives two full rows of four; below that the two-column
-   layout gives four full rows. The 1000-1239 band is the only one that
-   leaves a gap, and three columns there keeps the cards a usable width —
-   four would squeeze them under 210px. */
+/* Nine practitioners: pinned to three columns on desktop so they fall as a
+   clean 3x3, the way the practice's own board reads. Left to auto-fill, a
+   wide screen makes four columns and strands a single card on the last row. */
 @media (min-width:1000px){ .grid{ grid-template-columns:repeat(3,1fr) } }
-@media (min-width:1240px){ .grid{ grid-template-columns:repeat(4,1fr) } }
 
 /* the cards stay green panels standing on the cream ground, so the
    portrait scrim and its overlaid type keep working as before */
