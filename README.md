@@ -113,7 +113,7 @@ attributes:
 | `data-role` | discipline |
 | `data-practice` | practice name; falls back to "MediSmith" when blank |
 | `data-tel` | the number shown and dialled, e.g. `0785944858`. Blank hides the phone line |
-| `data-wa` | optional separate WhatsApp mobile. Needed when `data-tel` is a landline, since WhatsApp cannot use `021` numbers. Falls back to `data-tel` |
+| `data-wa` | absent: WhatsApp uses `data-tel`. Present with a number: uses that instead, which is how a landline listing still gets a working button. Present but empty: no WhatsApp, and the button is hidden rather than greyed out |
 | `data-email` | optional; blank hides the email line entirely |
 | `data-web` | practice URL. Blank leaves the website button disabled with a "coming soon" note |
 | `data-img` | portrait path; a missing file falls back to a gold monogram |
@@ -123,9 +123,9 @@ WhatsApp links are built at runtime — the leading `0` becomes `27`, so
 `0724056743` becomes `wa.me/27724056743` with a pre-filled booking message.
 
 Kruger lists the shared mobile `0615831552` directly, so her card needs no
-`data-wa`. Strohmenger lists the practice landline `0212013033`; WhatsApp
-rejects `021` numbers, so hers carries `data-wa="0615831552"` and the card shows
-the landline to call while sending WhatsApp to the mobile.
+`data-wa`. Strohmenger lists the practice landline `0212013033` and has no
+WhatsApp, so hers carries an empty `data-wa=""` and the button is hidden on
+her card only.
 
 ## Photos
 

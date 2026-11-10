@@ -148,6 +148,8 @@ h1,h2,h3{ margin:0; font-weight:400; }
 .btn--gold:hover{ background:var(--gold-soft); border-color:var(--gold-soft) }
 .btn--ghost:hover{ border-color:var(--gold); color:var(--gold) }
 .btn[aria-disabled="true"]{ opacity:.45; pointer-events:none }
+/* .btn sets display, which outranks the UA [hidden] rule */
+.btn[hidden]{ display:none }
 .ico{ width:15px; height:15px; flex:none }
 
 .nav__cta{ padding:.62rem 1.1rem }

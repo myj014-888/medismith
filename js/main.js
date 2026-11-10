@@ -250,16 +250,24 @@
     // Several practitioners are on a landline, which WhatsApp cannot use, so
     // data-wa carries a separate mobile. It falls back to data-tel when the
     // listed number is already a mobile.
-    var waRaw = String(d.wa || d.tel || '').replace(/\D/g, '');
+    // A present-but-empty data-wa means "no WhatsApp for this practitioner".
+    // Absent means "use the listed phone number". The distinction matters:
+    // falling back to a landline would build a wa.me link WhatsApp rejects.
+    var waRaw = ('wa' in d)
+      ? String(d.wa).replace(/\D/g, '')
+      : String(d.tel || '').replace(/\D/g, '');
+
     if (waRaw) {
+      mWa.hidden = false;
       mWa.href = 'https://wa.me/' + waNumber(waRaw) + '?text=' +
         encodeURIComponent('Hi ' + d.name + ', I found you via the MediSmith website and would like to book an appointment.');
       mWa.target = '_blank';
       mWa.removeAttribute('aria-disabled');
     } else {
-      mWa.href = '#';
+      // hidden rather than greyed out — a dead button invites the click
+      mWa.hidden = true;
+      mWa.removeAttribute('href');
       mWa.removeAttribute('target');
-      mWa.setAttribute('aria-disabled', 'true');
     }
 
     // Email is optional per practitioner, same as the phone.
